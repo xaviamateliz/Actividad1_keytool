@@ -5,6 +5,7 @@ Comandos:
     python3 mykeytool.py --help        Muestra la ayuda
     python3 mykeytool.py --genkey      Genera un par de claves RSA 2048 y lo guarda en el KeyStore
     python3 mykeytool.py --certreq     Genera una solicitud de firma (CSR) en formato PEM
+    python3 mykeytool.py --exportkey   Exporta la clave privada de un alias a un archivo .pem
 
 Dependencia:
     pip install cryptography
@@ -14,6 +15,7 @@ import argparse
 import sys
 
 from certreq import comando_certreq
+from exportkey import comando_exportkey
 from genkey import comando_genkey
 from keystore import ARCHIVO_KEYSTORE, KeystoreError
 
@@ -23,7 +25,7 @@ def main():
     Punto de entrada: lee los argumentos y ejecuta el comando elegido.
 
     Entradas:
-        Argumentos de la terminal (--genkey, --certreq, --keystore).
+        Argumentos de la terminal (--genkey, --certreq, --exportkey, --keystore).
     Salida:
         Ninguna. Termina con código 1 si ocurre un error controlado.
     """
@@ -43,6 +45,11 @@ def main():
         action="store_true",
         help="Genera una solicitud de firma de certificado (CSR) en formato PEM",
     )
+    grupo.add_argument(
+        "--exportkey",
+        action="store_true",
+        help="Exporta la clave privada de un alias a un archivo .pem",
+    )
     parser.add_argument(
         "--keystore",
         default=ARCHIVO_KEYSTORE,
@@ -55,6 +62,8 @@ def main():
             comando_genkey(args.keystore)
         elif args.certreq:
             comando_certreq(args.keystore)
+        elif args.exportkey:
+            comando_exportkey(args.keystore)
     except KeystoreError as error:
         print("Error: " + str(error))
         sys.exit(1)
