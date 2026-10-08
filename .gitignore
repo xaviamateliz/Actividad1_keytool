@@ -1,0 +1,6 @@
+# Almacenes y solicitudes generados al probar (contienen claves, no se suben)
+*.ks
+*.csr
+keystore.json
+keystore.pair
+__pycache__/
