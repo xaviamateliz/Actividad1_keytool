@@ -4,3 +4,5 @@
 keystore.json
 keystore.pair
 __pycache__/
+
+*.pem
