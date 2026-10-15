@@ -11,20 +11,6 @@ from keystore import KeystoreError, cargar_keystore
 
 
 def comando_exportkey(ruta):
-    """
-    Implementa --exportkey: saca la clave privada de un alias del KeyStore
-    y la guarda en un archivo <alias>.pem (sigue cifrada con la contraseña del alias).
-
-    Entradas:
-        ruta (str): ruta del archivo del KeyStore.
-    Salida:
-        Ninguna. Crea el archivo <alias>.pem e imprime el resultado por pantalla.
-    Errores (KeystoreError):
-        - El almacén no existe, está dañado o su contraseña es incorrecta.
-        - El alias no existe.
-        - La contraseña del alias es incorrecta.
-        - El archivo .pem de salida ya existe.
-    """
     password = getpass("Contraseña del KeyStore: ")
     datos = cargar_keystore(ruta, password)
 

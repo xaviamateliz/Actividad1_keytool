@@ -1,5 +1,5 @@
 """
-genkey.py - Comando --genkey: genera el par RSA y lo guarda en el KeyStore (PERSONA A).
+genkey.py - Comando --genkey: genera el par RSA y lo guarda en el KeyStore.
 """
 
 import os
